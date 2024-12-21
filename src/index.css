@@ -114,7 +114,7 @@ body, html {
 .signup-background {
   position: relative;
   /* background-image: url("./images/giammarco-boscaro-zeH-ljawHtg-unsplash.jpg"); */
-  background-image: url('./images/pen.jpg');
+  background-image: url('/images/pen.jpg');
   background-size:cover;
   background-position: center;
 }
@@ -141,7 +141,7 @@ body, html {
 .bg-login-background {
   background-size: cover;
   background-position:left;
-  background-image: url('./images/man2.jpg');
+  background-image: url('/images/man2.jpg');
   /* justify-content: right; */
  
 
