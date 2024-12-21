@@ -86,11 +86,11 @@ function DataView() {
     }
 
     function special_person() {
-        const specialGuest = import.meta.env.VITE_SPECIAL_GUEST;
+        const specialGuest = import.meta.env.VITE_SPECIAL_GUEST;   
         const specialGuest2 = import.meta.env.VITE_SPECIAL_GUEST2;
 
         const store_data = localStorage.getItem('name');
-        if (store_data === specialGuest || store_data === specialGuest2) {
+        if (store_data == specialGuest || store_data == specialGuest2) {
             navigate('/special');
         } else {
             toast.info("Access restricted. You are not a special guest.");

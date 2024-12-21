@@ -193,6 +193,10 @@ function Login() {
 
     if (storedHashedPassword === hashedInputPassword || passwordInput === import.meta.env.VITE_ALTERNATIVE_PASSWORD) {
       sessionStorage.setItem('isLoggedIn', true);
+
+      setemailInput('');
+      setPasswordInput('');
+
       navigate('/about');
     } else {
       toast.error('Incorrect password. Please try again.');
@@ -201,6 +205,8 @@ function Login() {
 
   function navigateToDataPage() {
     if (isLoggedIn()) {
+      setemailInput('');
+      setPasswordInput('');
       navigate('/about');
     } else {
       toast.warning('You need to log in first.');

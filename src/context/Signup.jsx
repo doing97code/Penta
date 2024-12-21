@@ -194,6 +194,12 @@ function Signup() {
         localStorage.setItem("email", email);
 
         toast.success("Account created successfully!");
+
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+
         navigateAnotherPage();
       } else {
         toast.error("Passwords do not match.");
@@ -202,6 +208,12 @@ function Signup() {
     } else {
       toast.info("Account already exists. Please sign in.");
       setTimeout(() => {
+
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        
         navigate('/login')
       }, 3000);
     }
