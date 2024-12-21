@@ -30,10 +30,15 @@ function New_password_fill() {
         const newHashedPassword = CryptoJS.SHA256(resetPW).toString(CryptoJS.enc.Base64);
         localStorage.setItem("pw", newHashedPassword);
         toast.success('Password updated successfully.', { position: "top-center" });
-        setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
-        setoldpw('');
+        setTimeout(() => {
+          navigate('/login');
+          setoldpw('');
         setresetPW('');
         setconfirm_resetPW('');
+        }
+        
+        , 2000); // Redirect after 2 seconds
+        
       } else {
         toast.error("The old password is incorrect. Please check and try again.", { position: "top-center" });
       }

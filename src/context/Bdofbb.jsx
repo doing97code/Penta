@@ -7,7 +7,7 @@ export default function Abhirikta() {
   const [bgPic, setBgPic] = useState('');
 
   // Environment variables for images
-  const bgPicPC = import.meta.env.VITE_BG_PC;
+  const bgPicPC = 'https://images.unsplash.com/photo-1504406438164-c0e042535100?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
   const bgPicMobile = import.meta.env.VITE_BG_MOBILE;
   const brth_link =import.meta.env.VITE_BIRTHDAY_LINK;
 

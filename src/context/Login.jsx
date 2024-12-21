@@ -264,14 +264,14 @@ function Login() {
 
         <div className="flex flex-col gap-4">
           <button
-            onClick={handleLogin}
+            onClick={()=>handleLogin()}
             className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 duration-300"
           >
             Login
           </button>
 
           <button
-            onClick={navigateToDataPage}
+            onClick={()=>navigateToDataPage()}
             className="w-full py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-transform transform hover:scale-105 duration-300"
           >
             View Data
