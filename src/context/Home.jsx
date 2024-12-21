@@ -41,7 +41,7 @@ function Home() {
         loop
         playsInline
       >
-        <source src='./src/images/video.mp4' type="video/mp4" />
+        <source src='./video.mp4' type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
