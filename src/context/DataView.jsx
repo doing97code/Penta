@@ -20,7 +20,7 @@ function DataView() {
 
     function setLocalStorage(listitemvalue) {
         if (!listitemvalue) {
-            toast.error("Please enter your data before saving." ,  { autoClose: 1500  });
+            toast.error("Please enter your data before saving.", { autoClose: 1500 });
             return;
         }
 
@@ -30,14 +30,14 @@ function DataView() {
 
         setLocalStorageData(updatedData);
         setlistitemvalue('');
-        toast.info("Item successfully added." , { autoClose: 1500 ,   style: {  color: "green" } });
+        toast.info("Item successfully added.", { autoClose: 1500, style: { color: "green" } });
     }
 
     function deleteData(index) {
         const updatedData = localStorageData.filter((_, i) => i !== index);
         localStorage.setItem("myData", JSON.stringify(updatedData));
         setLocalStorageData(updatedData);
-        toast.info("Item successfully deleted." ,{ autoClose: 500 ,   style: {  color: "red" } });
+        toast.info("Item successfully deleted.", { autoClose: 500, style: { color: "red" } });
     }
 
     function change_color() {
@@ -50,7 +50,7 @@ function DataView() {
             setisEditButton(false);
             setlistitemvalue(localStorageData[index]);
             setEditIndex(index);
-            toast.info("You are now editing an item." , { autoClose: 1000 ,   style: {  color: "green" } });
+            toast.info("You are now editing an item.", { autoClose: 1000, style: { color: "green" } });
 
             const mY_item = document.querySelectorAll('#allitem');
             mY_item.forEach((item, indx) => {
@@ -75,7 +75,7 @@ function DataView() {
 
         setisEditButton(true);
         setlistitemvalue('');
-        toast.info("Item successfully updated." , { autoClose: 1500 });
+        toast.info("Item successfully updated.", { autoClose: 1500 });
     }
 
     const navigate = useNavigate();
@@ -86,13 +86,15 @@ function DataView() {
     }
 
     function special_person() {
-        const specialGuest = import.meta.env.VITE_SPECIAL_GUEST;   
+        const specialGuest = import.meta.env.VITE_SPECIAL_GUEST;
         const specialGuest2 = import.meta.env.VITE_SPECIAL_GUEST2;
 
         const store_data = localStorage.getItem('name');
-        if (store_data == specialGuest || store_data == specialGuest2) {
+        if (store_data == specialGuest) {
             navigate('/special');
-        } else {
+        } else if (store_data == specialGuest2) {
+            navigate('/special');
+        }else {
             toast.info("Access restricted. You are not a special guest.");
         }
     }
