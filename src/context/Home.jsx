@@ -48,7 +48,7 @@ function Home() {
         loop
         playsInline
         ref={videoRef}
-        poster="./fallback-image.jpg" // Show fallback image while video loads
+        poster="/images/scrnshot.png" // Show fallback image while video loads
       >
         <source src="/video.mp4" type="video/mp4" />
         {/* <source src="https://penta365.netlify.app/video.mp4" type="video/mp4" /> */}
