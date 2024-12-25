@@ -1,26 +1,10 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
 
 function Home() {
   const [animationStart, setAnimationStart] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,35 +13,57 @@ function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const video = videoRef.current;
+          if (video && !videoLoaded) {
+            video.load(); // Start loading the video when it enters the viewport
+            setVideoLoaded(true);
+          }
+        }
+      },
+      { threshold: 0.5 } // Trigger loading when 50% of the video is visible
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) observer.unobserve(videoRef.current);
+    };
+  }, [videoLoaded]);
+
   return (
     <div
       className="home-container min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative sm:scale-[1.25] md:scale[1.1] lg:scale-[1]"
     >
-      {/* Video Background for Desktop */}
+      {/* Lazy Loaded Video Background */}
       <video
         className="background-video absolute top-0 left-0 w-full h-full object-cover z-0"
         autoPlay
         muted
         loop
         playsInline
+        ref={videoRef}
+        poster="./fallback-image.jpg" // Show fallback image while video loads
       >
-        <source src='./video.mp4' type="video/mp4" />
+        <source src="./video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Overlay Layer */}
-      {/* <div className="absolute inset-0 bg-black opacity-60 home_opacity"></div> */}
-
       {/* Outer Card */}
       <div
-        className={` md:bg-white text-gray-800 rounded-xl w-full max-w-lg p-8 space-y-8 relative z-10 home-form slide-in ${
+        className={`md:bg-white text-gray-800 rounded-xl w-full max-w-lg p-8 space-y-8 relative z-10 home-form slide-in ${
           animationStart ? 'slide-in-start' : ''
         }`}
       >
         {/* Welcome Section */}
         <div className="p-6 rounded-lg">
           <h1
-            className={`text-5xl font-extrabold text-center text-white mb-4 sm:text-black slide-in  ${
+            className={`text-5xl font-extrabold text-center text-white mb-4 sm:text-black slide-in ${
               animationStart ? 'slide-in-start' : ''
             }`}
           >
@@ -98,6 +104,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
