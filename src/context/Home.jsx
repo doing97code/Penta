@@ -50,11 +50,12 @@ function Home() {
         ref={videoRef}
         poster="./fallback-image.jpg" // Show fallback image while video loads
       >
-        <source src="./video.mp4" type="video/mp4" />
+        <source src="/video.mp4" type="video/mp4" />
+        {/* <source src="https://penta365.netlify.app/video.mp4" type="video/mp4" /> */}
         Your browser does not support the video tag.
       </video>
 
-      {/* Outer Card */}
+      {/* Outer Card  https://penta365.netlify.app/video.mp4  */}
       <div
         className={`md:bg-white text-gray-800 rounded-xl w-full max-w-lg p-8 space-y-8 relative z-10 home-form slide-in ${
           animationStart ? 'slide-in-start' : ''
