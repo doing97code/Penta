@@ -41,7 +41,7 @@ function Home() {
       className="home-container min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative sm:scale-[1.25] md:scale[1.1] lg:scale-[1]"
     >
       {/* Lazy Loaded Video Background */}
-      <video
+      <video preload="auto" controls 
         className="background-video absolute top-0 left-0 w-full h-full object-cover z-0"
         autoPlay
         muted
