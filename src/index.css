@@ -2,51 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   :root {
+    --radius: 0.5rem;
+  }
 
-        --radius: 0.5rem
-    
-    }
-    
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
 }
 
-
-
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-
-
-
-
-
-/* Default background for desktop */
+/* Home Container */
 .home-container {
-  /* background-image: url('./images/photo11.jpg'); */
-  /* background-image: url(); */
   background-size: cover;
   background-position: center;
 }
-
-/* Background for devices with width up to 830px */
-
-/* @media (max-width: 830px) {
-  .home-container {
-    background-image: url('./images/photo2.jpg');
-  }
-} */
-
-
-
-
-
 
 /* Video Background Styling */
 .background-video {
@@ -56,66 +29,24 @@ body, html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Place behind content */
+  z-index: -1;
 }
 
-/* Mobile - Use background image instead of video */
-@media (max-width: 768px) {
-
-  /* .background-video {
+/* @media (max-width: 768px) {
+ 
+  .background-video {
     display: none;
-  } */
-
-
-  /* for mobile */
-
-  /* .home-container {
-    background-image: url('./images/photo11.jpg'); 
-    background-size: cover;
-    background-position: center;
-    
-  } */
-
-  
-
-}
-
-
-
-
-
-/* Background for devices with width up to 630px */
-@media (max-width: 630px) {
-
-  /* .home-container {
-    background-image: url('https://images.unsplash.com/photo-1726047336166-5634aaa136c0?w=300&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjkzfHxkaWFyeSUyMCUyQyUyMGtoYXRhJTIwcGVufGVufDB8fDB8fHww');
-  } */
-
-  /* .home-container {
-    background-image: url('https://img.freepik.com/free-photo/interior-designer-working-out-office_23-2150379269.jpg?t=st=1733943374~exp=1733946974~hmac=d6a23c460f4091e4c71e6f1b113c1b50203bb6bfefcb8446343c685596d6536c&w=360');
-  } */
-  
-}
-
-
-
-
-/* @media (max-width: 640px) {
+  }
   .home-container {
-    background-image: url('https://plus.unsplash.com/premium_photo-1676929222646-6a33b82030ec?w=300&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGRpYXJ5JTIwJTJDJTIwa2hhdGElMjBwZW58ZW58MHx8MHx8fDA%3D');
+    background-image: url('/images/pen.jpg');
   }
 } */
 
-
-
-/* for sign up page  */
-
-/* styles.css */
+/* Sign-up Page */
 .signup-background {
   position: relative;
-  /* background-image: url("./images/giammarco-boscaro-zeH-ljawHtg-unsplash.jpg"); */
   background-image: url('/images/pen.jpg');
-  background-size:cover;
+  background-size: cover;
   background-position: center;
 }
 
@@ -126,7 +57,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -135,8 +66,32 @@ body, html {
   z-index: 2; /* Place content above the overlay */
 }
 
+/* Slide-in Animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-/* log in page  */
+.slide-in {
+  animation: slideIn 1.3s ease-out;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.slide-in-start {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* login page */
+
 
 .bg-login-background {
   background-size: cover;
@@ -167,45 +122,3 @@ body, html {
 
  
 }
-
-
-
-
-/* birthday page */
-
-
-
-
-
-/* Black overlay effect */
-.bg-black {
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
-}
-
-
-
-
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0%);
-    opacity: 1;
-  }
-}
-
-.slide-in {
-  animation: slideIn 1.3s ease-out;
-  animation-fill-mode: forwards; /* Ensure the animation stays at the end position */
-  visibility: hidden; /* Start hidden */
-  opacity: 0; /* Fully transparent at the start */
-}
-
-.slide-in-start {
-  visibility: visible; /* Becomes visible when animation begins */
-  opacity: 1; /* Allow animation to control the visibility */
-}
-

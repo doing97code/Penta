@@ -3,24 +3,25 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   const [animationStart, setAnimationStart] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef(null);
 
+  // Trigger animation after a short delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimationStart(true);
     }, 50); // Delay ensures the animation is applied properly
+
     return () => clearTimeout(timer);
   }, []);
 
+  // Optimize video loading using IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           const video = videoRef.current;
-          if (video && !videoLoaded) {
+          if (video) {
             video.load(); // Start loading the video when it enters the viewport
-            setVideoLoaded(true);
           }
         }
       },
@@ -32,16 +33,20 @@ function Home() {
     }
 
     return () => {
-      if (videoRef.current) observer.unobserve(videoRef.current);
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+      observer.disconnect(); // Cleanup observer
     };
-  }, [videoLoaded]);
+  }, []);
 
   return (
     <div
-      className="home-container min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative sm:scale-[1.25] md:scale[1.1] lg:scale-[1]"
+      className="home-container min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative sm:scale-[1.25] md:scale-[1.1] lg:scale-[1]"
     >
       {/* Lazy Loaded Video Background */}
-      <video preload="auto" controls 
+      <video
+        preload="auto"
         className="background-video absolute top-0 left-0 w-full h-full object-cover z-0"
         autoPlay
         muted
@@ -49,13 +54,13 @@ function Home() {
         playsInline
         ref={videoRef}
         poster="/images/scrnshot.png" // Show fallback image while video loads
+        onCanPlay={() => console.log('Video is ready to play!')} // Debug or state tracking
       >
         <source src="/video.mp4" type="video/mp4" />
-        {/* <source src="https://penta365.netlify.app/video.mp4" type="video/mp4" /> */}
         Your browser does not support the video tag.
       </video>
 
-      {/* Outer Card  https://penta365.netlify.app/video.mp4  */}
+      {/* Outer Card */}
       <div
         className={`md:bg-white text-gray-800 rounded-xl w-full max-w-lg p-8 space-y-8 relative z-10 home-form slide-in ${
           animationStart ? 'slide-in-start' : ''
